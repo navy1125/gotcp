@@ -121,7 +121,7 @@ func (self *Task) startRead() {
 		data, err := self.handleReadFun(self)
 		if err != nil {
 			self.Error("read error:%s", err.Error())
-			defer self.Stop()
+			self.Stop()
 			return
 		}
 		self.in <- data
