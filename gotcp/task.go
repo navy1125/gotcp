@@ -20,7 +20,7 @@ type Task struct {
 	Entry
 	Conn            *net.TCPConn
 	in              chan []ReadData
-	stop            chan bool
+	StopChan        chan bool
 	handleReadFun   func(task *Task) ([]ReadData, error)
 	handleWriteFun  func(task *Task, data []byte) error
 	handleParse     func(task *Task, data []byte) bool
@@ -34,7 +34,7 @@ func NewTask(c *net.TCPConn, name string) *Task {
 	task := &Task{
 		Conn:            c,
 		in:              make(chan []ReadData),
-		Stop:            make(chan bool),
+		StopChan:        make(chan bool),
 		handleReadFun:   handleReadFunDefault,
 		handleWriteFun:  handleWriteFunDefault,
 		handleParse:     handleParseDefault,
