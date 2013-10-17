@@ -3,7 +3,6 @@ package gotcp
 import (
 	"bytes"
 	"encoding/binary"
-	"fmt"
 	"net"
 	"time"
 )
@@ -93,7 +92,7 @@ func (self *Task) SendCmd(ptr unsafe.Pointer, length int) {
 func (self *Task) SendCmd(v interface{}) {
 	buf := new(bytes.Buffer)
 	if err := binary.Write(buf, binary.LittleEndian, v); err != nil {
-		self.Error("SendCmd err:", err.Error())
+		self.Error("SendCmd err:%s", err.Error())
 		return
 	}
 	self.handleWriteFun(self, buf.Bytes())
@@ -103,7 +102,7 @@ func (self *Task) SendCmd(v interface{}) {
 func (self *Task) GetCmd(data []byte, v interface{}) error {
 	buf := bytes.NewBuffer(data)
 	if err := binary.Read(buf, binary.BigEndian, v); err != nil {
-		self.Error("GetCmd err:", err.Error())
+		self.Error("GetCmd err:%s", err.Error())
 		return err
 	}
 	return nil
@@ -121,7 +120,7 @@ func (self *Task) startRead() {
 	for {
 		data, err := self.handleReadFun(self)
 		if err != nil {
-			fmt.Println("read error:", err)
+			self.Error("read error:%s", err.Error())
 			break
 		}
 		self.in <- data
