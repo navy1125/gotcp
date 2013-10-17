@@ -1,8 +1,8 @@
 package base
 
 import (
-	"../../gotcp"
-	"../common"
+	"github.com/navy1125/gotcp/gotcp"
+	"github.com/navy1125/gotcp/bw/common"
 	"encoding/binary"
 	"fmt"
 	"io"
