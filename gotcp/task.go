@@ -93,7 +93,6 @@ func (self *Task) SendCmd(v interface{}) {
 	buf := new(bytes.Buffer)
 	if err := binary.Write(buf, binary.LittleEndian, v); err != nil {
 		self.Error("SendCmd err:%s", err.Error())
-		defer self.Stop()
 		return
 	}
 	self.handleWriteFun(self, buf.Bytes())
@@ -104,7 +103,6 @@ func (self *Task) GetCmd(data []byte, v interface{}) error {
 	buf := bytes.NewBuffer(data)
 	if err := binary.Read(buf, binary.BigEndian, v); err != nil {
 		self.Error("GetCmd err:%s", err.Error())
-		defer self.Stop()
 		return err
 	}
 	return nil
@@ -123,6 +121,7 @@ func (self *Task) startRead() {
 		data, err := self.handleReadFun(self)
 		if err != nil {
 			self.Error("read error:%s", err.Error())
+			defer self.Stop()
 			return
 		}
 		self.in <- data
