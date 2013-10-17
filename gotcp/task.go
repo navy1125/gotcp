@@ -34,7 +34,7 @@ func NewTask(c *net.TCPConn, name string) *Task {
 	task := &Task{
 		Conn:            c,
 		in:              make(chan []ReadData),
-		stop:            make(chan bool),
+		Stop:            make(chan bool),
 		handleReadFun:   handleReadFunDefault,
 		handleWriteFun:  handleWriteFunDefault,
 		handleParse:     handleParseDefault,
@@ -114,7 +114,7 @@ func (self *Task) Start() {
 }
 func (self *Task) Stop() {
 	self.Conn.Close()
-	close(self.stop)
+	close(self.StopChan)
 }
 func (self *Task) startRead() {
 	defer close(self.in)
