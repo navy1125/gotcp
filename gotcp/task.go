@@ -112,6 +112,7 @@ func (self *Task) Start() {
 	go self.startWrite()
 }
 func (self *Task) Stop() {
+	self.Debug("ccccccccccccccccccccccccccccccccccccccccccccccccc")
 	self.Conn.Close()
 	close(self.StopChan)
 }
@@ -125,7 +126,6 @@ func (self *Task) startRead() {
 			self.Stop()
 			break
 		}
-		self.Debug("ccccccccccccccccccccccccccccccccccccccccccccccccc")
 		self.in <- data
 	}
 }
