@@ -93,6 +93,7 @@ func (self *Task) SendCmd(v interface{}) {
 	buf := new(bytes.Buffer)
 	if err := binary.Write(buf, binary.LittleEndian, v); err != nil {
 		self.Error("SendCmd err:%s", err.Error())
+		self.Conn.Close()
 		return
 	}
 	self.handleWriteFun(self, buf.Bytes())
@@ -112,7 +113,6 @@ func (self *Task) Start() {
 	go self.startWrite()
 }
 func (self *Task) Stop() {
-	self.Debug("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")
 	self.Conn.Close()
 	close(self.StopChan)
 }
