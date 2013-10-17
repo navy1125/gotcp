@@ -117,13 +117,14 @@ func (self *Task) Stop() {
 }
 func (self *Task) startRead() {
 	defer close(self.in)
+	defer self.Debug("startWrite close")
 	for {
 		data, err := self.handleReadFun(self)
 		if err != nil {
 			self.Error("read error:%s", err.Error())
 			self.Stop()
-			return
 		}
+		self.Debug("ccccccccccccccccccccccccccccccccccccccccccccccccc")
 		self.in <- data
 	}
 }
@@ -133,6 +134,7 @@ LOOP:
 	for {
 		select {
 		case <-self.StopChan:
+			self.Debug("startWrite close")
 			return
 		case <-heartBeat:
 			self.handleHeartBeat(self)
