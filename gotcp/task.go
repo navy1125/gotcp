@@ -117,12 +117,13 @@ func (self *Task) Stop() {
 }
 func (self *Task) startRead() {
 	defer close(self.in)
-	defer self.Debug("startWrite close")
+	defer self.Debug("startRead close")
 	for {
 		data, err := self.handleReadFun(self)
 		if err != nil {
 			self.Error("read error:%s", err.Error())
 			self.Stop()
+			break
 		}
 		self.Debug("ccccccccccccccccccccccccccccccccccccccccccccccccc")
 		self.in <- data
