@@ -112,7 +112,7 @@ func (self *Task) Start() {
 	go self.startWrite()
 }
 func (self *Task) Stop() {
-	self.Debug("ccccccccccccccccccccccccccccccccccccccccccccccccc")
+	self.Debug("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")
 	self.Conn.Close()
 	close(self.StopChan)
 }
