@@ -4,7 +4,6 @@ import (
 	"github.com/navy1125/gotcp/gotcp"
 	"github.com/navy1125/gotcp/bw/common"
 	"encoding/binary"
-	"fmt"
 	"io"
 )
 
@@ -39,7 +38,6 @@ func HandleWriteFunBw(task *gotcp.Task, data []byte) error {
 	return err
 }
 func HandleParseBw(task *gotcp.Task, data []byte) bool {
-	fmt.Println(data[0], data[1])
 	switch byCmd := data[0]; byCmd {
 	case Cmd.CMD_NULL:
 		switch byParam := data[1]; byParam {
