@@ -123,7 +123,7 @@ func (self *Task) startRead() {
 		data, err := self.handleReadFun(self)
 		if err != nil {
 			self.Error("read error:%s", err.Error())
-			break
+			return
 		}
 		self.in <- data
 	}
@@ -133,6 +133,8 @@ func (self *Task) startWrite() {
 LOOP:
 	for {
 		select {
+		case <-self.StopChan:
+			return
 		case <-heartBeat:
 			self.handleHeartBeat(self)
 			if !self.HeartBeatReturn {
