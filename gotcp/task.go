@@ -102,7 +102,7 @@ func (self *Task) SendCmd(v interface{}) {
 }
 
 func (self *Task) GetCmd(data []byte, v interface{}) error {
-	self.Debug("%d", reflect.TypeOf(v).Size())
+	self.Debug("%d,%d", len(data), reflect.TypeOf(v).Size())
 	if len(data) > 20 {
 		return nil
 	}
