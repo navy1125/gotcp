@@ -109,7 +109,7 @@ func (self *Task) GetCmd(data []byte, v interface{}) error {
 			return nil
 		}
 		//*/
-	buf := bytes.NewBuffer(data[:cmdsize])
+	buf := bytes.NewBuffer(data)
 	//self.Debug("msg size:%s,%d,%d", reflect.TypeOf(v).String(), len(data), cmdsize)
 	if err := binary.Read(buf, binary.BigEndian, v); err != nil {
 		self.Error("GetCmd err:%s", err.Error())
