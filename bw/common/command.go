@@ -39,3 +39,19 @@ func NewStRequestUserGameTimeTimerUserCmd() *StRequestUserGameTimeTimerUserCmd {
 	cmd.ByParam = REQUESTUSERGAMETIME_TIMER_USERCMD_PARA
 	return cmd
 }
+
+/// 网关向用户发送游戏时间
+const USERGAMETIME_TIMER_USERCMD_PARA = 3
+
+type StUserGameTimeTimerUserCmd struct {
+	stTimerUserCmd
+	qwGameTime uint64 /**< 用户游戏时间 */
+	mac        uint64 /**< 用户MAC */
+}
+
+func NewStUserGameTimeTimerUserCmd() *StUserGameTimeTimerUserCmd {
+	cmd := &StStUserGameTimeTimerUserCmd{}
+	cmd.ByCmd = TIME_USERCMD
+	cmd.ByParam = USERGAMETIME_TIMER_USERCMD_PARA
+	return cmd
+}
