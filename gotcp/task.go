@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"net"
+	"reflect"
 	"time"
 )
 
@@ -101,6 +102,10 @@ func (self *Task) SendCmd(v interface{}) {
 }
 
 func (self *Task) GetCmd(data []byte, v interface{}) error {
+	self.Debug("%d", reflect.TypeOf(v).Size())
+	if len(data) > 20 {
+		return
+	}
 	buf := bytes.NewBuffer(data)
 	if err := binary.Read(buf, binary.BigEndian, v); err != nil {
 		self.Error("GetCmd err:%s", err.Error())
