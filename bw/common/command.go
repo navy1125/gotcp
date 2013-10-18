@@ -50,7 +50,7 @@ type StUserGameTimeTimerUserCmd struct {
 }
 
 func NewStUserGameTimeTimerUserCmd() *StUserGameTimeTimerUserCmd {
-	cmd := &StStUserGameTimeTimerUserCmd{}
+	cmd := &StUserGameTimeTimerUserCmd{}
 	cmd.ByCmd = TIME_USERCMD
 	cmd.ByParam = USERGAMETIME_TIMER_USERCMD_PARA
 	return cmd
