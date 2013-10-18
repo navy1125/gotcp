@@ -45,15 +45,15 @@ const USERGAMETIME_TIMER_USERCMD_PARA = 3
 
 type StUserGameTimeTimerUserCmd struct {
 	stTimerUserCmd
-	qwGameTime uint64 /**< 用户游戏时间 */
-	mac        uint64 /**< 用户MAC */
+	QwGameTime uint64 /**< 用户游戏时间 */
+	Mac        uint64 /**< 用户MAC */
 }
 
 func NewStUserGameTimeTimerUserCmd() *StUserGameTimeTimerUserCmd {
 	cmd := &StUserGameTimeTimerUserCmd{}
 	cmd.ByCmd = TIME_USERCMD
 	cmd.ByParam = USERGAMETIME_TIMER_USERCMD_PARA
-	cmd.qwGameTime = 0
-	cmd.mac = 0
+	cmd.QwGameTime = 0
+	cmd.Qac = 0
 	return cmd
 }
