@@ -5,6 +5,8 @@ import ()
 //max name size
 const MAX_NAMESIZE = 32
 const MAX_PASSWORD = 16
+const MAX_ACCNAMESIZE = 48
+const MAX_TOKENSIZE = 256
 
 type T_NullCmd struct {
 	ByCmd   byte
