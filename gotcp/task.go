@@ -102,11 +102,13 @@ func (self *Task) SendCmd(v interface{}) {
 }
 
 func (self *Task) GetCmd(data []byte, v interface{}) error {
-	self.Debug("%d,%d", len(data), reflect.TypeOf(v).Size())
-	if len(data) > 20 {
+	cmdsize := reflect.TypeOf(v).Size()
+	if len(data) < cmdsize {
+		self.Debug("err size:%s,%d,%d", reflect.TypeOf(v).Name(), len(data), cmdsize)
 		return nil
 	}
-	buf := bytes.NewBuffer(data)
+	buf := bytes.NewBuffer(data[:cmdsize])
+	self.Debug("msg size:%s,%d,%d", reflect.TypeOf(v).Name(), len(data), cmdsize)
 	if err := binary.Read(buf, binary.BigEndian, v); err != nil {
 		self.Error("GetCmd err:%s", err.Error())
 		return err
