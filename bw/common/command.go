@@ -54,6 +54,6 @@ func NewStUserGameTimeTimerUserCmd() *StUserGameTimeTimerUserCmd {
 	cmd.ByCmd = TIME_USERCMD
 	cmd.ByParam = USERGAMETIME_TIMER_USERCMD_PARA
 	cmd.QwGameTime = 0
-	cmd.Qac = 0
+	cmd.Mac = 0
 	return cmd
 }
