@@ -7,6 +7,7 @@ const MAX_NAMESIZE = 32
 const MAX_PASSWORD = 16
 const MAX_ACCNAMESIZE = 48
 const MAX_TOKENSIZE = 256
+const MAX_MACSIZE = 64
 
 type T_NullCmd struct {
 	ByCmd   byte
