@@ -1,8 +1,8 @@
 package main
 
 import (
-	gotcp "../gotcp"
 	"fmt"
+	"git.code4.in/mobilegameserver/unibase/bwtask"
 	"math/rand"
 	"net"
 	"time"
@@ -16,8 +16,8 @@ func main() {
 		return
 	}
 	fmt.Println("new connection:", conn.RemoteAddr())
-	task := gotcp.NewTask(conn, "Client")
-	task.Id = rand.Int63()
+	task := bwtask.NewBwTask(conn, "Client")
+	task.Id = uint64(rand.Int63())
 	task.Name = conn.RemoteAddr().String()
 	task.Start()
 	tick := time.Tick(time.Second * 5)

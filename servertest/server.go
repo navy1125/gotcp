@@ -1,8 +1,8 @@
 package main
 
 import (
-	gotcp "../gotcp"
 	"fmt"
+	"git.code4.in/mobilegameserver/unibase/bwtask"
 	"net"
 	"time"
 )
@@ -32,7 +32,7 @@ func main() {
 			continue
 		}
 		fmt.Println("new connection:", conn.RemoteAddr())
-		task := gotcp.NewTask(conn, "Server")
+		task := bwtask.NewBwTask(conn, "Server")
 		task.Start()
 	}
 }
