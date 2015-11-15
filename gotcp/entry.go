@@ -1,7 +1,7 @@
 package gotcp
 
 import (
-	"github.com/xuyu/logging"
+	"git.code4.in/mobilegameserver/logging"
 	"strconv"
 )
 
