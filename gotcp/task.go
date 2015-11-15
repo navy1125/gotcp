@@ -6,6 +6,8 @@ import (
 	"net"
 	//"reflect"
 	"time"
+
+	"git.code4.in/mobilegameserver/unibase/entry"
 )
 
 type HandleMessageFunc func(task *Task, data []byte)
@@ -17,7 +19,7 @@ type ReadData struct {
 	Data   []byte
 }
 type Task struct {
-	Entry
+	entry.Entry
 	Conn            *net.TCPConn
 	in              chan []ReadData
 	StopChan        chan bool
